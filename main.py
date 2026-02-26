@@ -5,14 +5,15 @@ from PySide6.QtCore import QCoreApplication, Qt, QIODevice, QTimer
 from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog, QPushButton, QComboBox
 from PySide6.QtGui import QIcon, QAction, QCloseEvent
 
-import ctypes # Windows exclusive, allows for unique icon assignment
-myappid = 'int.maldi' # arbitrary string
-ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
+import sys
+if sys.platform == 'win32':
+    import ctypes # Windows exclusive, allows for unique icon assignment
+    myappid = 'int.maldi' # arbitrary string
+    ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
 
 # utils
 from pathlib import Path
 from time import *
-import sys
 from utils import FluigentController
 
 class MainWindow(QMainWindow, Ui_MainWindow): # pass ui class
@@ -43,7 +44,8 @@ else:
 
 if __name__ == '__main__':
     window = MainWindow()
-    app.setStyle('Windows')
+    if sys.platform == 'win32':
+        app.setStyle('Windows')
     window.show()
     print(f'Running...\n')
     app.exec()

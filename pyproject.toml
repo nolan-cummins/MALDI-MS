@@ -35,3 +35,6 @@ members = [
 
 [tool.uv.sources]
 fluigent-sdk = { workspace = true }
+
+[tool.uv]
+python-downloads = "automatic"
