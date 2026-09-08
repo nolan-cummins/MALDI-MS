@@ -276,6 +276,35 @@ def fgt_get_TtlChannelCount(get_error = _get_error):
     c_error = fgt_ERROR(c_error)
     return (c_error, count) if get_error else count
     
+def fgt_get_pressureStatus(pressure_index, get_error = _get_error):
+    """Retrieve status information about a specific pressure channel.
+    
+    This function provides hardware details, a status bitmask (information), 
+    and a string description of the current channel state.
+
+    Args:
+        pressure_index: Index of pressure channel or unique ID
+    Returns:
+        (instr_type, instr_sn, information, detail)
+        instr_type: Value from fgt_INSTRUMENT_TYPE enum
+        instr_sn: Serial number of the instrument
+        information: Status bitmask (e.g., indicating calibration or errors)
+        detail: String description of the status
+    """
+    pressure_index = int(pressure_index)
+    low_level_function = low_level.fgt_get_pressureStatus
+    c_error, instr_type, instr_sn, information, detail = low_level_function(pressure_index)
+    
+    # Manage errors/exceptions via the SDK's standard handler
+    exceptions.manage_pressure_status(low_level_function.__name__, pressure_index)
+    
+    c_error = fgt_ERROR(c_error)
+    instr_type = fgt_INSTRUMENT_TYPE(instr_type)
+    
+    # Return structure matches your other high-level functions
+    results = (instr_type, instr_sn, information, detail)
+    return (c_error, *results) if get_error else results
+
 def fgt_get_valveChannelCount(get_error = _get_error):
     """Get total number of initialized valve channels. 
     

@@ -51,7 +51,7 @@ elif _is_arm and not _is_64_bits:
     _lib_relative_path.append("arm")
 
 # Build the path using the modern importlib.resources API
-_pkg_files = importlib.resources.files(__name__)
+_pkg_files = importlib.resources.files("Fluigent.SDK")
 for _part in _lib_relative_path:
     _pkg_files = _pkg_files.joinpath(_part)
 

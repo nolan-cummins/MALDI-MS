@@ -11,8 +11,50 @@ wheels/
 
 # Jupyter Notebooks
 .ipynb_checkpoints/
+*.ipynb
 
-# SDKs
+# SDKs / third-party
 Baumer_GAPI_SDK_2.15.2_win_x86_64_cpp/
+ffmpeg-8.1.1-essentials_build/
 PySpin/
 Teledyne/
+TensorRT-10.16.1.11/
+
+# Recordings and data
+recordings/
+yolo/recordings/
+logs/
+
+# Backup / planning
+9-1-2026_bckp/
+plans/
+
+# UI backups (only latest .ui and mainwindow.py kept)
+ui/example_v1.png
+ui/mainwindow-checkpoint.py
+ui/ui_v1.ui
+ui/ui_v2.ui
+ui/ui_v3.ui
+ui/ui_v3_vibecoded.ui
+ui/ui_v4.ui
+
+# Asset extras (only icon.ico kept)
+assets/icon/128.png
+assets/icon/16.png
+assets/icon/256.png
+assets/icon/32.png
+assets/icon/48.png
+assets/icon/64.png
+assets/icon/raw.png
+assets/dog.jpg
+
+# YOLO training datasets and experiment artifacts
+yolo/esi_*/
+yolo/object detection/
+yolo/segmentation/
+yolo/runs/
+yolo/*.png
+yolo/benchmarks.log
+
+# Misc
+*.json
